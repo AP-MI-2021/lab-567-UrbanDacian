@@ -23,7 +23,7 @@ def stergereCarte(id, lista):
     :param lista: libraria inainte de stergerea cartii
     :return: lista fara cartea care trebuia stearsa
     '''
-    id = int(input("Dati id-ul cartii care sa fie sterse - int: "))
+    id = int(input("Dati id-ul cartii care sa fie sterse: "))
     return (carte for carte in lista if getId(carte) != id)
 
 

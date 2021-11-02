@@ -37,8 +37,8 @@ def runMenu(lista):
 
 
 def showAll(lista):
-    for prajitura in lista:
-        print(toString(prajitura))
+    for carte in lista:
+        print(toString(carte))
 
 
 def uiAdaugareCarte(lista):
