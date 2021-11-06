@@ -1,25 +1,25 @@
-from Domain.Cheltuiala import getTitlu, getAbonament, getPret, getId, creeazaCarte
+from Domain.Cheltuiala import getCheckin, getPret, creeazaCheltuiala, getId, getNume, getClasa
 
 
-def modificareGen(titlu, gen, lista):
+def ieftinireCheltuiala(procent, lista):
     '''
-    Modifica genul unei carti folosindu-se de titlul acesteia
-    :param titlu: titlul cartii careia urmeaza sa i se schimbe genul
-    :param gen: genul care urmeaza sa fie aplicat unei carti
-    :param lista: lista initiala, fara ca genul cartii sa fie schimbat
-    :return: o noua lista in care genul cartii este schimbat
+    Ieftinirea tuturor rezervărilor la care s-a făcut checkin cu un procentaj citit.
+    :param procent: procentul de ieftinire
+    :param lista: lista de dicitonare
+    :return: o lista cu preturile ieftinite
     '''
     listaNoua = []
-    for carte in lista:
-        if getTitlu(carte) == titlu:
-            carteNoua = creeazaCarte(
-                getId(carte),
-                getTitlu(carte),
-                gen,
-                getPret(carte),
-                getAbonament(carte)
+    for cheltuiala in lista:
+        if getCheckin(cheltuiala) == "Da":
+            pret = getPret(cheltuiala) - procent*getPret(cheltuiala)
+            cheltuialaNoua = creeazaCheltuiala(
+                getId(cheltuiala),
+                getNume(cheltuiala),
+                getClasa(cheltuiala),
+                pret,
+                "Da"
             )
-            listaNoua.append(carteNoua)
+            listaNoua.append(cheltuialaNoua)
         else:
-            listaNoua.append(carte)
+            listaNoua.append(cheltuiala)
     return listaNoua

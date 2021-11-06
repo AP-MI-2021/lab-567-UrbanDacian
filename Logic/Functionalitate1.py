@@ -1,35 +1,34 @@
-from Domain.Cheltuiala import getAbonament, getPret, creeazaCarte, getId, getTitlu, getGen
+from Domain.Cheltuiala import getNume, getClasa, creeazaCheltuiala, getId, getPret, getCheckin
 
 
-def aplicareReduceri(lista):
+def crestereClasa(nume, lista):
     '''
-    Afiseaza o lista cu pretul cartilor dupa aplicarea unor reduceri in functie de tipul de abonament
-    :param reducere: pretul dupa reducere
-    :param lista: lista initiala
-    :return: lista cu preturile modificate
+    Trecerea tuturor rezervărilor făcute pe un nume citit la o clasă superioară.
+    :param nume: numele
+    :param lista: lista de cheltuieli
+    :return: lista noua
     '''
     listaNoua = []
-    for carte in lista:
-        if getAbonament(carte) == "silver":
-            reducere = getPret(carte) - 1/20 * getPret(carte)
-            carteNoua = creeazaCarte(
-                getId(carte),
-                getTitlu(carte),
-                getGen(carte),
-                reducere,
-                "silver"
-            )
-            listaNoua.append(carteNoua)
-        elif getAbonament(carte) == "gold":
-            reducere = getPret(carte) - 1 / 10 * getPret(carte)
-            carteNoua = creeazaCarte(
-                getId(carte),
-                getTitlu(carte),
-                getGen(carte),
-                reducere,
-                "gold"
-            )
-            listaNoua.append(carteNoua)
+    for cheltuiala in lista:
+        if getNume(cheltuiala) == nume:
+            if getClasa(cheltuiala) == "economy":
+                cheltuialaNoua = creeazaCheltuiala(
+                    getId(cheltuiala),
+                    getNume(cheltuiala),
+                    "economy plus",
+                    getPret(cheltuiala),
+                    getCheckin(cheltuiala)
+                )
+                listaNoua.append(cheltuialaNoua)
+            elif getClasa(cheltuiala) == "economy plus":
+                cheltuialaNoua = creeazaCheltuiala(
+                    getId(cheltuiala),
+                    getNume(cheltuiala),
+                    "business",
+                    getPret(cheltuiala),
+                    getCheckin(cheltuiala)
+                )
+                listaNoua.append(cheltuialaNoua)
         else:
-            listaNoua.append(carte)
+            listaNoua.append(cheltuiala)
     return listaNoua

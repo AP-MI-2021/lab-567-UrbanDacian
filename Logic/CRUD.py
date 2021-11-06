@@ -1,60 +1,61 @@
-from Domain.Cheltuiala import creeazaCarte, getId
+from Domain.Cheltuiala import creeazaCheltuiala, getId
 
 
-def adaugareCarte(id, titlu, gen, pret, abonament, lista):
+def adaugaCheltuiala(id, nume, clasa, pret, checkin, lista):
     '''
-    Adauga o carte la lista
-    :param id: id-ul cartii - int
-    :param titlu: titlul cartii - string
-    :param gen: genul cartii - string
-    :param pret: pretul cartii - float
-    :param abonament: tipul de abonament - float
+    Adauga o cheltuiala la o lista
+    :param id: id-ul cheltuielii
+    :param nume: numele cheltuielii
+    :param clasa: clasa cheltuielii
+    :param pret: pretul cheltuielii
+    :param checkin: tipul de checkin
     :param lista: lista initiala
-    :return: lista la care se adauga si noua carte
+    :return: lista care contine noua cheltuiala
     '''
-    carte = creeazaCarte(id, titlu, gen, pret, abonament)
-    return lista + [carte]
+    return lista + [creeazaCheltuiala(id, nume, clasa, pret, checkin)]
 
 
-def stergereCarte(id, lista):
-    '''
-    Sterge o carte din dictionar folosindu-se de id-ul acesteia
-    :param id: id-ul cartii care sa fie sterse - int
-    :param lista: libraria inainte de stergerea cartii
-    :return: lista fara cartea care trebuia stearsa
-    '''
-    id = int(input("Dati id-ul cartii care sa fie sterse: "))
-    return (carte for carte in lista if getId(carte) != id)
-
-
-def modificareCarte(id, titlu, gen, pret, abonament, lista):
-    '''
-    Schimba o carte din lista cu una noua
-    :param id: id-ul cartii - int
-    :param titlu: titlul carti - string
-    :param gen: genul cartii - string
-    :param pret: pretul cartii - float
-    :param abonament: tipul de abonament - string
-    :param lista: lista initiala
-    :return: o lista noua cu cartea modificata
-    '''
+def stergeCheltuiala(id, lista):
     listaNoua = []
-    for carte in lista:
-        if getId(carte) != id:
-            listaNoua.append(carte)
+    '''
+    Sterge o cheltuiala din lista
+    :param id: id-ul cheltuielii care urmeaza sa fie sterse
+    :param lista: lista initiala
+    :return: lista finala fara cheltuiala care trebuie stearsa
+    '''
+    for cheltuiala in lista:
+        if getId(cheltuiala) != id:
+            listaNoua.append(cheltuiala)
+    return listaNoua
+
+
+def modificareCheltuiala(id, nume, clasa, pret, checkin, lista):
+    listaNoua = []
+    '''
+    Modifica o cheltuiala din lista
+    :param id: id-ul cheltuielii care urmeaza sa fie modificate
+    :param nume: numele noii cheltuieli
+    :param clasa: clasa noii cheltuieli
+    :param pret: pretul noii cheltuieli
+    :param checkin: tipul de checkin al noii cheltuieli
+    :param lista: lista initiala
+    :return: lista finala cu cheltuiala care a fost modificata
+    '''
+    for cheltuiala in lista:
+        if getId(cheltuiala) != id:
+            listaNoua.append(cheltuiala)
         else:
-            carteNoua = creeazaCarte(id, titlu, gen, pret, abonament)
-            listaNoua.append(carteNoua)
+            listaNoua.append(creeazaCheltuiala(id, nume, clasa, pret, checkin))
     return listaNoua
 
 
 def getById(id, lista):
     '''
-    Returneaza o carte cu ajutorul id-ului acesteia
-    :param id: id-ul cartii cautate
-    :param lista: lista de carti
-    :return: cartea cautata
+    Returneaza o cheltuiala cu ajutorul id-ului acesteia
+    :param id: id-ul cheltuielii cautate
+    :param lista: lista de cheltuieli
+    :return: cheltuiala
     '''
-    for carte in lista:
-        if getId(carte) == id:
-            return carte
+    for cheltuiala in lista:
+        if getId(cheltuiala) == id:
+            return cheltuiala

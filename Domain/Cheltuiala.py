@@ -1,47 +1,72 @@
-def creeazaCarte (id, titlu, gen, pret, abonament):
+def creeazaCheltuiala(id, nume, clasa, pret, checkin):
     '''
     Creaza un dictionar care retine o cheltuiala
-    :param id: id-ul cartii din dictionar - int
-    :param titlu: titlul cartii din dictionar - string
-    :param gen: genul cartii din dictionar - string
-    :param pret: pretul cartii din dictionar - float
-    :param abonament: gold/silver/none - string
+    :param id: id-ul cheltuielii - int
+    :param nume: numele cheltuielii - string
+    :param clasa: tipul de clasa (business/ economy plus/ economy) - string
+    :param pret: pretul - float
+    :param checkin: (da/nu) - string
     :return:
     '''
-    return {
-        "id": id,
-        "titlu": titlu,
-        "gen": gen,
-        "pret": pret,
-        "abonament": abonament
+    return{
+        'id': id,
+        'nume': nume,
+        'clasa': clasa,
+        'pret': pret,
+        'checkin': checkin
     }
 
 
-
-def getId(carte):
-    return carte["id"]
-
-
-def getTitlu(carte):
-    return carte["titlu"]
-
-
-def getGen(carte):
-    return carte["gen"]
-
-def getPret(carte):
-    return carte["pret"]
+def getId(cheltuiala):
+    '''
+    Getter pentru id
+    :param cheltuiala: Libraria de dictionare
+    :return: id-ul unui dicitonar
+    '''
+    return cheltuiala('id')
 
 
-def getAbonament(carte):
-    return carte["abonament"]
+def getNume(cheltuiala):
+    '''
+    Getter pentru nume
+    :param cheltuiala: Libraria de dictionare
+    :return: numele unui dicitonar
+    '''
+    return cheltuiala('nume')
 
 
-def toString(carte):
-    return "{}, {}, {}, {}, {}".format(
-        getId(carte),
-        getTitlu(carte),
-        getGen(carte),
-        getPret(carte),
-        getAbonament(carte)
+def getClasa(cheltuiala):
+    '''
+    Getter pentru clasa
+    :param cheltuiala: Libraria de dictionare
+    :return: clasa unui dicitonar
+    '''
+    return cheltuiala('clasa')
+
+
+def getPret(cheltuiala):
+    '''
+    Getter pentru pret
+    :param cheltuiala: Libraria de dictionare
+    :return: pretul unui dicitonar
+    '''
+    return cheltuiala('pret')
+
+
+def getCheckin(cheltuiala):
+    '''
+    Getter pentru checkin
+    :param cheltuiala: Libraria de dictionare
+    :return: Da/Nu
+    '''
+    return cheltuiala('checkin')
+
+
+def toString(cheltuiala):
+    return "{}, {}, {}, {}, {}" .format(
+        getId(cheltuiala),
+        getNume(cheltuiala),
+        getClasa(cheltuiala),
+        getPret(cheltuiala),
+        getCheckin(cheltuiala)
     )

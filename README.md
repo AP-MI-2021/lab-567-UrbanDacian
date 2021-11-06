@@ -58,7 +58,7 @@ Temele se predau exclusiv într-un IDE (PyCharm, VS Code etc.).
    3.4. Determinarea prețului maxim pentru fiecare clasă.  
    3.5. Ordonarea rezervărilor descrescător după preț.  
    3.6. Afișarea sumelor prețurilor pentru fiecare nume.  
-   3.7. Undo.  
+   3.7. Undo + Redo.  
 
 4. Scrieți un program pentru gestionarea unei librării. Vor fi suportate operațiile:  
    4.1. Adăugare / ștergere / modificare vânzare: se efectuează pe bază de număr de vânzare / ID. O vânzare conține: ID, titlu carte, gen carte, preț, tip reducere client (`none`, `silver`, `gold`).  
