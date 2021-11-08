@@ -23,7 +23,7 @@ def getId(cheltuiala):
     :param cheltuiala: Libraria de dictionare
     :return: id-ul unui dicitonar
     '''
-    return cheltuiala('id')
+    return cheltuiala['id']
 
 
 def getNume(cheltuiala):
@@ -32,7 +32,7 @@ def getNume(cheltuiala):
     :param cheltuiala: Libraria de dictionare
     :return: numele unui dicitonar
     '''
-    return cheltuiala('nume')
+    return cheltuiala['nume']
 
 
 def getClasa(cheltuiala):
@@ -41,7 +41,7 @@ def getClasa(cheltuiala):
     :param cheltuiala: Libraria de dictionare
     :return: clasa unui dicitonar
     '''
-    return cheltuiala('clasa')
+    return cheltuiala['clasa']
 
 
 def getPret(cheltuiala):
@@ -50,7 +50,7 @@ def getPret(cheltuiala):
     :param cheltuiala: Libraria de dictionare
     :return: pretul unui dicitonar
     '''
-    return cheltuiala('pret')
+    return cheltuiala['pret']
 
 
 def getCheckin(cheltuiala):
@@ -59,7 +59,7 @@ def getCheckin(cheltuiala):
     :param cheltuiala: Libraria de dictionare
     :return: Da/Nu
     '''
-    return cheltuiala('checkin')
+    return cheltuiala['checkin']
 
 
 def toString(cheltuiala):
