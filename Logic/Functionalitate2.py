@@ -11,7 +11,7 @@ def ieftinireCheltuiala(procent, lista):
     listaNoua = []
     for cheltuiala in lista:
         if getCheckin(cheltuiala) == "Da":
-            pret = getPret(cheltuiala) - procent*getPret(cheltuiala)
+            pret = getPret(cheltuiala) - (procent/100)*getPret(cheltuiala)
             cheltuialaNoua = creeazaCheltuiala(
                 getId(cheltuiala),
                 getNume(cheltuiala),
