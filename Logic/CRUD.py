@@ -59,3 +59,19 @@ def getById(id, lista):
     for cheltuiala in lista:
         if getId(cheltuiala) == id:
             return cheltuiala
+
+
+def undo(lista, undolist, redolist):
+    if len(undolist) > 0:
+        redolist.append(lista)
+        lista = undolist.pop()
+    else:
+        return None
+    return lista
+
+
+def redo(lista, undolist, redolist):
+    if len(redolist) > 0:
+        undolist.append(lista)
+        lista = redolist.pop()
+    return lista
