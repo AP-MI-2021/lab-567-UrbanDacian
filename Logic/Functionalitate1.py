@@ -11,24 +11,33 @@ def crestereClasa(nume, lista):
     listaNoua = []
     for cheltuiala in lista:
         if getNume(cheltuiala) == nume:
-            if getClasa(cheltuiala) == "economy":
+            if getClasa(cheltuiala) == "Economy":
                 cheltuialaNoua = creeazaCheltuiala(
                     getId(cheltuiala),
                     getNume(cheltuiala),
-                    "economy plus",
+                    "EconomyPlus",
                     getPret(cheltuiala),
                     getCheckin(cheltuiala)
                 )
                 listaNoua.append(cheltuialaNoua)
-            elif getClasa(cheltuiala) == "economy plus":
+            elif getClasa(cheltuiala) == "EconomyPlus":
                 cheltuialaNoua = creeazaCheltuiala(
                     getId(cheltuiala),
                     getNume(cheltuiala),
-                    "business",
+                    "Business",
+                    getPret(cheltuiala),
+                    getCheckin(cheltuiala)
+                )
+            else:
+                cheltuialaNoua = creeazaCheltuiala(
+                    getId(cheltuiala),
+                    getNume(cheltuiala),
+                    getClasa(cheltuiala),
                     getPret(cheltuiala),
                     getCheckin(cheltuiala)
                 )
                 listaNoua.append(cheltuialaNoua)
+
         else:
             listaNoua.append(cheltuiala)
     return listaNoua
