@@ -1,50 +1,49 @@
-from Domain.Cheltuiala import toString
-from Logic.CRUD import adaugaCheltuiala, stergeCheltuiala, modificareCheltuiala
+from Logic.CRUD import adaugaCheltuiala, modificareCheltuiala, stergeCheltuiala
+from UserInterface.Console import showAll
 
 
 def help():
-    '''
-    In meniu comenzile sunt separate prin ; iar variabilele ce trebuie atribuite prin ,
-    :return: meniul
-    '''
-    print("Add,Id,Nume,Clasa,Pret,Checkin")
-    print("Delete,Id")
-    print("Showall")
-    print("Update,Id,Nume,Clasa,Pret,Checkin")
-    print("Stop")
+    print("Daca doriti sa adaugati o rezervare, tastati in primul rand 'add', iar mai apoi "
+          "despartite printr-o virgula si fara spatii intre ele: "
+          "id-ul, numele, clasa, pretul si checkin-ul")
+    print("Daca doriti sa stergeti o rezervare, tastati in primul rand 'delete', iar mai apoi "
+          "id-ul rezervarii pe care doriti sa o stergeti")
+    print("Daca doriti sa modificati o rezervare, tastati in primul rand 'modify', iar mai apoi, "
+          "despartite printr-o virgula si fara spatii intre ele: "
+          "id-ul, numele, clasa, pretul si checkin-ul")
+    print("Daca doriti sa efectuati mai multe comenzi deodata, dati valorile asa cum este specificat mai sus, "
+          "iar intre doua comenzi,tastati ';'")
+    print("Daca doriti sa afisati lista tastati 'a'")
+    print("Daca doriti sa va opriti tastati 'x'")
 
 
-def showAllCL(lista):
-    print(toString(lista))
-
-
-def runMenuCL(lista):
-    help()
+def new_menu(lista):
+    ajutor = input("Daca vreti sa afisati meniul, tastati 'Da',altfel tastati orice altceva: ")
+    if ajutor == 'Da':
+        help()
     while True:
-        option = input("Introduceti comanda: ")
-        if option == "Meniu":
-            help()
-        elif option == "Stop":
+        comanda = input("Ce comenzi doriti sa efectuati despartite prin ';' ?")
+        categorii = comanda.split(";")
+        if categorii[0] == "exit":
             break
         else:
-            part_split = option.split(";")
-            for comanda in part_split:
-                comanda_split = comanda.split(',')
-                if comanda_split[0] == "Add":
+            for optiune in categorii:
+                camp = optiune.split(",")
+                if camp[0] == "add":
                     try:
-                        lista = adaugaCheltuiala(comanda_split[1], comanda_split[2], comanda_split[3], comanda_split[4], comanda_split[5], lista)
-                    except ValueError as ve:
-                        print("Eroare {}".format(ve))
-                        return lista
-                elif comanda_split[0] == "Delete":
-                    lista = stergeCheltuiala(comanda_split[1], lista)
-                elif comanda_split[0] == "Update":
+                        lista = adaugaCheltuiala(camp[1], camp[2], camp[3], camp[4], camp[5], lista)
+                    except IndexError as ie:
+                        print("Eroare: {}".format(ie))
+                elif camp[0] == "a":
+                    showAll(lista)
+                elif camp[0] == "modify":
                     try:
-                        lista = modificareCheltuiala(comanda_split[1], comanda_split[2], comanda_split[3], comanda_split[4], comanda_split[5], lista)
-                    except ValueError as ve:
-                        print("Eroare {}".format(ve))
-                        return lista
-                elif comanda_split[0] == "Showall":
-                    showAllCL(lista)
-                elif comanda_split[0] == "Help":
-                    help()
+                        lista = modificareCheltuiala(camp[1], camp[2], camp[3], camp[4], camp[5], lista)
+                    except IndexError as ie:
+                        print("Eroare: {}".format(ie))
+                elif camp[0] == "delete":
+                    lista = stergeCheltuiala(camp[1], lista)
+                elif camp[0] == "x":
+                    break
+                else:
+                    print("Optiune gresita! Reincercati!")

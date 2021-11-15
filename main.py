@@ -1,6 +1,7 @@
 from Logic.CRUD import adaugaCheltuiala
 from UserInterface.Console import runMenu
-from UserInterface.command_line_console import runMenuCL
+from UserInterface.command_line_console import new_menu
+
 
 def main():
     lista = []
@@ -14,7 +15,7 @@ def main():
         if menu == "1":
             runMenu(lista)
         elif menu == "2":
-            runMenuCL(lista)
+            new_menu(lista)
         elif menu == "x":
             break
         else:

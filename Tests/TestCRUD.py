@@ -70,3 +70,12 @@ def testModificaCheltuiala():
         assert getCheckin(prajituraNeupdatata) == "Da"
     except Exception:
         assert False
+
+
+def testGetById():
+    lista = []
+    lista = adaugaCheltuiala(1, "Ion", "Business", 300, "Da", lista)
+    lista = adaugaCheltuiala(2, "Marcel", "Economy", 200, "Nu", lista)
+
+    assert getById(1, lista) == (1, "Ion", "Business", 300, "Da")
+    assert getById(2, lista) == (2, "Marcel", "Economy", 200, "Nu")

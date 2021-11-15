@@ -12,21 +12,19 @@ def adaugaCheltuiala(id, nume, clasa, pret, checkin, lista):
     :param lista: lista initiala
     :return: lista care contine noua cheltuiala
     '''
+    if getById(id, lista) is not None:
+        raise ValueError("Id-ul exista deja!")
     return lista + [creeazaCheltuiala(id, nume, clasa, pret, checkin)]
 
 
 def stergeCheltuiala(id, lista):
-    listaNoua = []
     '''
     Sterge o cheltuiala din lista
     :param id: id-ul cheltuielii care urmeaza sa fie sterse
     :param lista: lista initiala
     :return: lista finala fara cheltuiala care trebuie stearsa
     '''
-    for cheltuiala in lista:
-        if getId(cheltuiala) != id:
-            listaNoua.append(cheltuiala)
-    return listaNoua
+    return [rezervare for rezervare in lista if getId(rezervare) != id]
 
 
 def modificareCheltuiala(id, nume, clasa, pret, checkin, lista):
