@@ -1,5 +1,5 @@
 from Domain.Cheltuiala import getId, getNume, getClasa, getPret, getCheckin
-from Logic.CRUD import adaugaCheltuiala, getById, stergeCheltuiala, modificareCheltuiala
+from Logic.CRUD import adaugaCheltuiala, getById, stergeCheltuiala, modificareCheltuiala, undo, redo
 
 
 def testAdaugaCheltuiala():
@@ -79,3 +79,28 @@ def testGetById():
 
     assert getById(1, lista) == (1, "Ion", "Business", 300, "Da")
     assert getById(2, lista) == (2, "Marcel", "Economy", 200, "Nu")
+
+
+def testUndoRedo():
+    lista = []
+    lista = adaugaCheltuiala(1, "Ion", "Business", 300, "Da", lista)
+    lista = adaugaCheltuiala(2, "Marcel", "Economy", 200, "Nu", lista)
+
+
+    stergeCheltuiala(2, lista)
+    undoList = []
+    undoList.append((2, "Marcel", "Economy", 200, "Nu"))
+    redoList = []
+
+    assert len(lista) == 1
+    assert getById(2, lista) is None
+
+    undo(lista, undoList, redoList)
+    redoList.append(getById(2, lista))
+
+    assert len(lista) == 2
+    assert getById(2, lista) is not None
+
+    redo(lista, undoList, redoList)
+    assert len(lista) == 1
+    assert getById(2, lista) is None
